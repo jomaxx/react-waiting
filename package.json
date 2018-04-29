@@ -1,10 +1,12 @@
 {
   "name": "react-waiting",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "",
   "main": "lib/index.js",
   "module": "lib/index.es.js",
-  "files": ["lib"],
+  "files": [
+    "lib"
+  ],
   "scripts": {
     "prebuild": "rm -rf",
     "build": "NODE_ENV=production rollup -c",
