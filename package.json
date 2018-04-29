@@ -4,6 +4,7 @@
   "description": "",
   "main": "lib/index.js",
   "module": "lib/index.es.js",
+  "files": ["lib"],
   "scripts": {
     "prebuild": "rm -rf",
     "build": "NODE_ENV=production rollup -c",
