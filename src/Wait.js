@@ -73,12 +73,12 @@ function getDerivedStateFromProps(props) {
 
   const cached = {
     status: 0,
-    promise: props.on,
+    promise: undefined,
     value: undefined,
     error: undefined
   };
 
-  props.on
+  cached.promise = props.on
     .then(value => {
       cached.status = 1;
       cached.promise = undefined;
