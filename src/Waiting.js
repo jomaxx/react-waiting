@@ -3,14 +3,21 @@ import React from "react";
 const Context = React.createContext(() => {});
 
 export default class Waiting extends React.Component {
-  state = { waiting: 0 };
+  state = {
+    waiting: true,
+    size: 1
+  };
 
   setState = this.setState.bind(this);
+
+  componentDidMount() {
+    this.setState(decrement);
+  }
 
   render() {
     return (
       <Context.Provider value={this.setState}>
-        {this.props.children(!!this.state.waiting)}
+        {this.props.children(this.state.waiting)}
       </Context.Provider>
     );
   }
@@ -39,9 +46,15 @@ class IncrementWaitingSideEffect extends React.Component {
 }
 
 function increment(state) {
-  return { waiting: state.waiting + 1 };
+  state.size = state.size + 1;
+  const waiting = !!state.size;
+  if (state.waiting === waiting) return null;
+  return { size: state.size, waiting };
 }
 
 function decrement(state) {
-  return { waiting: state.waiting - 1 };
+  state.size = state.size - 1;
+  const waiting = !!state.size;
+  if (state.waiting === waiting) return null;
+  return { size: state.size, waiting };
 }
